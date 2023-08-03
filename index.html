@@ -34,6 +34,23 @@
     resize: none;
     margin-top: 10px;
   }
+
+  /* Styles for the reviews container */
+  .reviews-container {
+    margin-top: 20px;
+    max-height: 200px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .review {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 </style>
 </head>
 <body>
@@ -46,11 +63,16 @@
   <button id="submitReview">Submit Review</button>
 </div>
 
+<div class="reviews-container" id="reviewsContainer">
+  <!-- Reviews will be dynamically added here -->
+</div>
+
 <script>
   const reviewButton = document.getElementById('reviewButton');
   const popup = document.getElementById('popup');
   const submitReviewButton = document.getElementById('submitReview');
   const reviewText = document.getElementById('reviewText');
+  const reviewsContainer = document.getElementById('reviewsContainer');
 
   reviewButton.addEventListener('click', () => {
     popup.style.display = 'block';
@@ -58,14 +80,17 @@
 
   submitReviewButton.addEventListener('click', () => {
     const review = reviewText.value;
-    // Assuming you have a way to send the review to the server, e.g., using AJAX or fetch
-    // Here, you would implement the logic to send the review to the server (not shown in this example)
-    
-    // Clear the text area and close the popup
-    reviewText.value = '';
-    popup.style.display = 'none';
-    
-    alert('Review submitted! It will be visible to the host of the website.');
+
+    if (review.trim() !== '') {
+      const reviewElement = document.createElement('div');
+      reviewElement.classList.add('review');
+      reviewElement.textContent = review;
+
+      reviewsContainer.appendChild(reviewElement);
+
+      reviewText.value = '';
+      popup.style.display = 'none';
+    }
   });
 </script>
 

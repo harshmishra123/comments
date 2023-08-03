@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Review Button</title>
+<style>
+  /* Styles for the button */
+  .review-button {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Styles for the popup */
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .popup textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<button class="review-button" id="reviewButton">Leave a Review</button>
+
+<div class="popup" id="popup">
+  <h2>Write Your Review</h2>
+  <textarea id="reviewText" placeholder="Write your review here..."></textarea>
+  <button id="submitReview">Submit Review</button>
+</div>
+
+<script>
+  const reviewButton = document.getElementById('reviewButton');
+  const popup = document.getElementById('popup');
+  const submitReviewButton = document.getElementById('submitReview');
+  const reviewText = document.getElementById('reviewText');
+
+  reviewButton.addEventListener('click', () => {
+    popup.style.display = 'block';
+  });
+
+  submitReviewButton.addEventListener('click', () => {
+    const review = reviewText.value;
+    // Assuming you have a way to send the review to the server, e.g., using AJAX or fetch
+    // Here, you would implement the logic to send the review to the server (not shown in this example)
+    
+    // Clear the text area and close the popup
+    reviewText.value = '';
+    popup.style.display = 'none';
+    
+    alert('Review submitted! It will be visible to the host of the website.');
+  });
+</script>
+
+</body>
+</html>
